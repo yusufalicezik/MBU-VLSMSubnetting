@@ -45,17 +45,20 @@ class VLSMViewController: UIViewController {
         if let hostInt = Int(self.hostSayisiTextField.text!) {
             if !self.agAdiTextField.text!.isEmpty && !self.hostSayisiTextField.text!.isEmpty{
                 self.dataList.append(Ag(agAdi: self.agAdiTextField.text!, hostSayisi: hostInt))
+                self.dataList.sort { (ag1, ag2) -> Bool in
+                    return ag1.hostSayisi > ag2.hostSayisi
+                }
                 self.tableView.reloadData()
             }
         }
     }
     @IBAction func hesaplaButtonClicked(_ sender: Any) {
-        if !self.ipAddressTextField.text!.isEmpty && ipAdressFormat(){
+       // if !self.ipAddressTextField.text!.isEmpty && ipAdressFormat(){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultVC") as? ResultViewController
             vc?.dataList = self.dataList
             vc?.ipAdress = self.ipAddressTextField.text!
             self.navigationController?.pushViewController(vc!, animated: true)
-        }
+       /// }
     }
     func ipAdressFormat()->Bool{
         let ipList = getIpAdressInt(self.ipAddressTextField.text!)

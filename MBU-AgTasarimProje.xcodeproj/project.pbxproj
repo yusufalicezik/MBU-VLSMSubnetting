@@ -20,6 +20,7 @@
 		485E73762362574F005323ED /* AgInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E73742362574F005323ED /* AgInfoCell.swift */; };
 		485E73772362574F005323ED /* AgInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 485E73752362574F005323ED /* AgInfoCell.xib */; };
 		485E737923626D90005323ED /* DetailResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737823626D90005323ED /* DetailResultViewController.swift */; };
+		485E737B2362EB11005323ED /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737A2362EB11005323ED /* Extension+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		485E73742362574F005323ED /* AgInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgInfoCell.swift; sourceTree = "<group>"; };
 		485E73752362574F005323ED /* AgInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgInfoCell.xib; sourceTree = "<group>"; };
 		485E737823626D90005323ED /* DetailResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResultViewController.swift; sourceTree = "<group>"; };
+		485E737A2362EB11005323ED /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				485E7370236250E3005323ED /* Extension + Int.swift */,
+				485E737A2362EB11005323ED /* Extension+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				485E737B2362EB11005323ED /* Extension+String.swift in Sources */,
 				481918F4236238E400D43D88 /* ViewController.swift in Sources */,
 				481918F2236238E400D43D88 /* AppDelegate.swift in Sources */,
 				4819190523623B9300D43D88 /* VLSMViewController.swift in Sources */,
