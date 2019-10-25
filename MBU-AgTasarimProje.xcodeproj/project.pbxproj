@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48076BDB236311D70027EDB1 /* AllResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48076BDA236311D70027EDB1 /* AllResultsViewController.swift */; };
+		48076BDD23632D330027EDB1 /* AllResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48076BDC23632D330027EDB1 /* AllResultsCell.swift */; };
 		481918F2236238E400D43D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481918F1236238E400D43D88 /* AppDelegate.swift */; };
 		481918F4236238E400D43D88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481918F3236238E400D43D88 /* ViewController.swift */; };
 		481918F7236238E400D43D88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481918F5236238E400D43D88 /* Main.storyboard */; };
@@ -21,9 +23,12 @@
 		485E73772362574F005323ED /* AgInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 485E73752362574F005323ED /* AgInfoCell.xib */; };
 		485E737923626D90005323ED /* DetailResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737823626D90005323ED /* DetailResultViewController.swift */; };
 		485E737B2362EB11005323ED /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737A2362EB11005323ED /* Extension+String.swift */; };
+		6A47AE8A5375397E7BC60B05 /* Pods_MBU_AgTasarimProje.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6866A7371E12CE7A48C9DA63 /* Pods_MBU_AgTasarimProje.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48076BDA236311D70027EDB1 /* AllResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllResultsViewController.swift; sourceTree = "<group>"; };
+		48076BDC23632D330027EDB1 /* AllResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllResultsCell.swift; sourceTree = "<group>"; };
 		481918EE236238E400D43D88 /* MBU-AgTasarimProje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MBU-AgTasarimProje.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		481918F1236238E400D43D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		481918F3236238E400D43D88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		485E73752362574F005323ED /* AgInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgInfoCell.xib; sourceTree = "<group>"; };
 		485E737823626D90005323ED /* DetailResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResultViewController.swift; sourceTree = "<group>"; };
 		485E737A2362EB11005323ED /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		54A9D41F84423FD7CEDB0420 /* Pods-MBU-AgTasarimProje.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBU-AgTasarimProje.release.xcconfig"; path = "Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje.release.xcconfig"; sourceTree = "<group>"; };
+		6866A7371E12CE7A48C9DA63 /* Pods_MBU_AgTasarimProje.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBU_AgTasarimProje.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2E8C0FEE948059589D0DD21 /* Pods-MBU-AgTasarimProje.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBU-AgTasarimProje.debug.xcconfig"; path = "Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A47AE8A5375397E7BC60B05 /* Pods_MBU_AgTasarimProje.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1012A2827F1CD2CAF0670652 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6866A7371E12CE7A48C9DA63 /* Pods_MBU_AgTasarimProje.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		481918E5236238E400D43D88 = {
 			isa = PBXGroup;
 			children = (
 				481918F0236238E400D43D88 /* MBU-AgTasarimProje */,
 				481918EF236238E400D43D88 /* Products */,
+				4D35B7D5AAF775D794B6CAD2 /* Pods */,
+				1012A2827F1CD2CAF0670652 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +111,7 @@
 				4819190423623B9300D43D88 /* VLSMViewController.swift */,
 				485E736B23624D10005323ED /* ResultViewController.swift */,
 				485E737823626D90005323ED /* DetailResultViewController.swift */,
+				48076BDA236311D70027EDB1 /* AllResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -101,6 +121,7 @@
 			children = (
 				485E73742362574F005323ED /* AgInfoCell.swift */,
 				485E73752362574F005323ED /* AgInfoCell.xib */,
+				48076BDC23632D330027EDB1 /* AllResultsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -123,6 +144,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		4D35B7D5AAF775D794B6CAD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2E8C0FEE948059589D0DD21 /* Pods-MBU-AgTasarimProje.debug.xcconfig */,
+				54A9D41F84423FD7CEDB0420 /* Pods-MBU-AgTasarimProje.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48191900236238E600D43D88 /* Build configuration list for PBXNativeTarget "MBU-AgTasarimProje" */;
 			buildPhases = (
+				8B9B12CE1DD0E5D905AA7397 /* [CP] Check Pods Manifest.lock */,
 				481918EA236238E400D43D88 /* Sources */,
 				481918EB236238E400D43D88 /* Frameworks */,
 				481918EC236238E400D43D88 /* Resources */,
+				4268F93C43212D66ACF7113C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +223,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4268F93C43212D66ACF7113C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B9B12CE1DD0E5D905AA7397 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MBU-AgTasarimProje-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		481918EA236238E400D43D88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -197,11 +272,13 @@
 			files = (
 				485E737B2362EB11005323ED /* Extension+String.swift in Sources */,
 				481918F4236238E400D43D88 /* ViewController.swift in Sources */,
+				48076BDD23632D330027EDB1 /* AllResultsCell.swift in Sources */,
 				481918F2236238E400D43D88 /* AppDelegate.swift in Sources */,
 				4819190523623B9300D43D88 /* VLSMViewController.swift in Sources */,
 				485E7371236250E3005323ED /* Extension + Int.swift in Sources */,
 				485E737923626D90005323ED /* DetailResultViewController.swift in Sources */,
 				485E736E2362502E005323ED /* AgResult.swift in Sources */,
+				48076BDB236311D70027EDB1 /* AllResultsViewController.swift in Sources */,
 				4819190B23624A3C00D43D88 /* Ag.swift in Sources */,
 				485E736C23624D10005323ED /* ResultViewController.swift in Sources */,
 				485E73762362574F005323ED /* AgInfoCell.swift in Sources */,
@@ -348,6 +425,7 @@
 		};
 		48191901236238E600D43D88 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2E8C0FEE948059589D0DD21 /* Pods-MBU-AgTasarimProje.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -366,6 +444,7 @@
 		};
 		48191902236238E600D43D88 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54A9D41F84423FD7CEDB0420 /* Pods-MBU-AgTasarimProje.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

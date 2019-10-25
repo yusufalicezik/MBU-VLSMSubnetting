@@ -17,19 +17,23 @@ class DetailResultViewController: UIViewController {
     @IBOutlet weak var kullanilanIPSayisiLabel: UILabel!
     @IBOutlet weak var bostaKalanIpSayisiLabel: UILabel!
     @IBOutlet weak var baslangicIPAdresiLabel: UILabel!
+    @IBOutlet weak var agIPAdresiLabel: UILabel!
     @IBOutlet weak var bitisIPAdresiLabel: UILabel!
     @IBOutlet weak var yayınAdresiLabel: UILabel!
     @IBOutlet weak var altAgMaskesiLabel: UILabel!
     var propertyList = Array<String>()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNeedsStatusBarAppearanceUpdate()
         setupViewInfo()
         headerTitle.text = propertyList[0]
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     func setupViewInfo(){
-        let views = [agAdiLabel,hostSayisiLabel,ayrilanIPSayisiLabel,kullanilanIPSayisiLabel,bostaKalanIpSayisiLabel,baslangicIPAdresiLabel,bitisIPAdresiLabel,yayınAdresiLabel,altAgMaskesiLabel]
-        if views.count == propertyList.count{
+        let views = [agAdiLabel,hostSayisiLabel,ayrilanIPSayisiLabel,kullanilanIPSayisiLabel,bostaKalanIpSayisiLabel,agIPAdresiLabel,baslangicIPAdresiLabel,bitisIPAdresiLabel,yayınAdresiLabel,altAgMaskesiLabel]
+        if views.count == propertyList.count{ //+1 ağ adresi
             for i in 0..<propertyList.count{
                 (views[i])?.text = propertyList[i]
             }

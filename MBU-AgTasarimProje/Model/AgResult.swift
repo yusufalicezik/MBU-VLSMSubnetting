@@ -9,11 +9,15 @@
 import Foundation
 class AgResult{
     var agName:String = ""
+    var agAgAdresi:String = ""
     var agBaslangicIp:String = ""
     var agBitisIp:String = ""
     var agAltAgMaskesi:String = ""
     var agYayinAdresi:String = ""
-    
+    var agHostSayisi:String = ""
+    var ayrilanIPSayisi:String = ""
+    var kullanılanIPAdres:String = ""
+    var bostaKalanIPAdress:String = ""
     init() {
         
     }
