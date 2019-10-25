@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -150,7 +150,6 @@
 				C2E8C0FEE948059589D0DD21 /* Pods-MBU-AgTasarimProje.debug.xcconfig */,
 				54A9D41F84423FD7CEDB0420 /* Pods-MBU-AgTasarimProje.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

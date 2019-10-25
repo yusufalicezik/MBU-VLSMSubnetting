@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C2DDB7DD02220E17A95F399E242A33A"
-               BuildableName = "Pods_MBU_AgTasarimProje.framework"
-               BlueprintName = "Pods-MBU-AgTasarimProje"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "481918ED236238E400D43D88"
+               BuildableName = "MBU-AgTasarimProje.app"
+               BlueprintName = "MBU-AgTasarimProje"
+               ReferencedContainer = "container:MBU-AgTasarimProje.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "481918ED236238E400D43D88"
+            BuildableName = "MBU-AgTasarimProje.app"
+            BlueprintName = "MBU-AgTasarimProje"
+            ReferencedContainer = "container:MBU-AgTasarimProje.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C2DDB7DD02220E17A95F399E242A33A"
-            BuildableName = "Pods_MBU_AgTasarimProje.framework"
-            BlueprintName = "Pods-MBU-AgTasarimProje"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "481918ED236238E400D43D88"
+            BuildableName = "MBU-AgTasarimProje.app"
+            BlueprintName = "MBU-AgTasarimProje"
+            ReferencedContainer = "container:MBU-AgTasarimProje.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,6 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "481918ED236238E400D43D88"
+            BuildableName = "MBU-AgTasarimProje.app"
+            BlueprintName = "MBU-AgTasarimProje"
+            ReferencedContainer = "container:MBU-AgTasarimProje.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

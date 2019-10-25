@@ -24,6 +24,10 @@ class AllResultsViewController: UIViewController {
     @IBAction func backButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func pdfButton(_ sender: Any) {
+        self.saveAsPDF()
+        print("kaydedildi")
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -47,4 +51,63 @@ extension AllResultsViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     
+    func saveAsPDF(){
+        createPdfFromTableView()
+    }
+    func createPdfFromTableView()
+    {
+        //let text = "Alt Ağlara Bölme Sonuçları"
+        let url:URL = URL(string: "www.whatsa.com.tr")!
+        let imgOfScreen = UIApplication.shared.screenShot
+
+        
+        let vc = UIActivityViewController(activityItems: [imgOfScreen!,url], applicationActivities: [])
+        if let popoverController = vc.popoverPresentationController{
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = self.view.bounds
+        }
+        self.present(vc, animated: true, completion: nil)
+        
+        
+//        let priorBounds: CGRect = self.tableView.bounds
+//        let fittedSize: CGSize = self.tableView.sizeThatFits(CGSize(width: priorBounds.size.width, height: self.tableView.contentSize.height))
+//        self.tableView.bounds = CGRect(x: 0, y: 0, width: fittedSize.width, height: fittedSize.height)
+//        self.tableView.reloadData()
+//        let pdfPageBounds: CGRect = CGRect(x: 0, y: 0, width: fittedSize.width, height: (fittedSize.height))
+//        let pdfData: NSMutableData = NSMutableData()
+//        UIGraphicsBeginPDFContextToData(pdfData, pdfPageBounds, nil)
+//        UIGraphicsBeginPDFPageWithInfo(pdfPageBounds, nil)
+//        self.tableView.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        UIGraphicsEndPDFContext()
+//        
+//        let fileManager = FileManager.default
+//        do {
+//            let documentDirectory  = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//            let documentsFileName = documentDirectory.absoluteString + "/" + "denemePDF2"
+//            pdfData.write(toFile: documentsFileName, atomically: true)
+//            print(documentsFileName)
+//        } catch {
+//            print(error)
+//        }
+        
+        
+    }
+}
+extension UIApplication {
+    
+    var screenShot: UIImage?  {
+        
+        if let layer = keyWindow?.layer {
+            let scale = UIScreen.main.scale
+            
+            UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+            if let context = UIGraphicsGetCurrentContext() {
+                layer.render(in: context)
+                let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                return screenshot
+            }
+        }
+        return nil
+    }
 }

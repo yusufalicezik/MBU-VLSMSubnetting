@@ -199,16 +199,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BtD-ne-lYb">
-                                                    <rect key="frame" x="10" y="10" width="350" height="22.5"/>
+                                                    <rect key="frame" x="10" y="10" width="744" height="22.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ankara" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJ9-45-j9Q">
-                                                            <rect key="frame" x="0.0" y="1.5" width="170" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="1.5" width="367" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.054901960780000002" green="0.16078431369999999" blue="0.2274509804" alpha="0.89536065919999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpG-pK-dNW">
-                                                            <rect key="frame" x="180" y="0.0" width="170" height="22.5"/>
+                                                            <rect key="frame" x="377" y="0.0" width="367" height="22.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="0.44823353929999998" green="0.75235503859999997" blue="0.68120964839999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -753,9 +753,18 @@
                                             <action selector="backButtonClicked:" destination="qnc-aK-jzV" eventType="touchUpInside" id="pUA-hE-j7W"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIw-Qk-kwj">
+                                        <rect key="frame" x="856" y="16" width="30" height="30"/>
+                                        <state key="normal" title="PDF"/>
+                                        <connections>
+                                            <action selector="pdfButton:" destination="gJH-l2-lVp" eventType="touchUpInside" id="cCk-Qg-XvU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WIw-Qk-kwj" secondAttribute="trailing" constant="10" id="4AZ-D7-lcC"/>
+                                    <constraint firstItem="WIw-Qk-kwj" firstAttribute="centerY" secondItem="g8T-hn-f7Q" secondAttribute="centerY" id="8PF-zE-lKT"/>
                                     <constraint firstAttribute="bottom" secondItem="g8T-hn-f7Q" secondAttribute="bottom" constant="10" id="Y0q-ul-rVA"/>
                                     <constraint firstItem="8Yz-4V-Who" firstAttribute="leading" secondItem="LAb-ad-U3W" secondAttribute="leading" constant="10" id="Z0P-mT-FXy"/>
                                     <constraint firstAttribute="trailing" secondItem="g8T-hn-f7Q" secondAttribute="trailing" constant="10" id="bez-t1-Lp3"/>
