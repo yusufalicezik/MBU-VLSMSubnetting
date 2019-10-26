@@ -1,16 +1,28 @@
 PODS:
   - IQKeyboardManagerSwift (6.5.1)
+  - Pastel (0.6.0)
+  - SwiftyShadow (1.7.0)
+  - ViewAnimator (2.5.1)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - Pastel
+  - SwiftyShadow (~> 1.7.0)
+  - ViewAnimator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - IQKeyboardManagerSwift
+    - Pastel
+    - SwiftyShadow
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
+  Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
+  SwiftyShadow: d2697c62eb83759b7806466e3ea29de24c772c29
+  ViewAnimator: 173932c659a43c5a15c665878750d92801ae2cf1
 
-PODFILE CHECKSUM: 46e226d37185866e209b7eaaaa5988517313e07b
+PODFILE CHECKSUM: ed66b7d6fde58ed4a92cddbf6aef4fbb435586a1
 
 COCOAPODS: 1.7.3

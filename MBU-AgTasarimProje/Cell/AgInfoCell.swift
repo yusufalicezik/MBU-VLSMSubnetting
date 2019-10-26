@@ -10,6 +10,7 @@ import UIKit
 
 class AgInfoCell: UITableViewCell {
 
+    @IBOutlet weak var detailicon: UIImageView!
     @IBOutlet weak var agAdiLabel: UILabel!
     @IBOutlet weak var hostSayisiLabel: UILabel!
     override func awakeFromNib() {

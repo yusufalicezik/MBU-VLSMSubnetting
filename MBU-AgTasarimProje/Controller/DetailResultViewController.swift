@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftyShadow
 
 class DetailResultViewController: UIViewController {
 
+    @IBOutlet weak var detailContainer: UIView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var agAdiLabel: UILabel!
     @IBOutlet weak var hostSayisiLabel: UILabel!
@@ -25,6 +27,7 @@ class DetailResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
+        self.detailContainer.layer.cornerRadius = 15
         setupViewInfo()
         headerTitle.text = propertyList[0]
     }
@@ -38,6 +41,11 @@ class DetailResultViewController: UIViewController {
                 (views[i])?.text = propertyList[i]
             }
         }
+        self.detailContainer.layer.shadowRadius = 10
+        self.detailContainer.layer.shadowOpacity = 0.2
+        self.detailContainer.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.detailContainer.layer.shadowOffset = CGSize.zero
+        self.detailContainer.generateOuterShadow()
     }
    
     @IBAction func backButtonClicked(_ sender: Any) {

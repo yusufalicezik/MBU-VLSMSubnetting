@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyShadow
 
 class VLSMViewController: UIViewController {
 
@@ -23,9 +24,9 @@ class VLSMViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func setupView(){
-        self.agAdiTextField.layer.cornerRadius = 5
-        self.hostSayisiTextField.layer.cornerRadius = 5
-        self.hostSayisiTextField.layer.cornerRadius = 5
+        self.agAdiTextField.layer.cornerRadius = 7
+        self.hostSayisiTextField.layer.cornerRadius = 7
+        self.hostSayisiTextField.layer.cornerRadius = 7
         self.ekleButton.layer.cornerRadius = 10
         self.ipAddressTextField.layer.cornerRadius = 10
         self.hesaplaButton.layer.cornerRadius = 10
@@ -33,11 +34,32 @@ class VLSMViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
+        
+        
+        self.agAdiTextField.layer.shadowRadius = 7
+        self.agAdiTextField.layer.shadowOpacity = 0.10
+        self.agAdiTextField.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.agAdiTextField.layer.shadowOffset = CGSize.zero
+        self.agAdiTextField.generateOuterShadow()
+        
+        self.hostSayisiTextField.layer.shadowRadius = 7
+        self.hostSayisiTextField.layer.shadowOpacity = 0.10
+        self.hostSayisiTextField.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.hostSayisiTextField.layer.shadowOffset = CGSize.zero
+        self.hostSayisiTextField.generateOuterShadow()
+        
+        self.ipAddressTextField.layer.shadowRadius = 7
+        self.ipAddressTextField.layer.shadowOpacity = 0.14
+        self.ipAddressTextField.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.ipAddressTextField.layer.shadowOffset = CGSize.zero
+        self.ipAddressTextField.generateOuterShadow()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.1607843137, blue: 0.2274509804, alpha: 1)
+         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.2862745098, green: 0.5764705882, blue: 0.6588235294, alpha: 1)
          self.setNeedsStatusBarAppearanceUpdate()
         if self.dataList.count > 0{
             self.dataList.removeLast()
@@ -84,6 +106,7 @@ class VLSMViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
     
 }
 extension VLSMViewController:UITableViewDelegate, UITableViewDataSource{

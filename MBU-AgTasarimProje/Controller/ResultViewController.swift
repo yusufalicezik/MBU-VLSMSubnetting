@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-//2 sorun: 1:/16 ya göre andleme yapılarak ip oymuş gibi devam edilecek.
-// 2: eğer tek bir ağ varsa bitiş ve yayın vs almıyor, if datacount == 0 sa özel durum uygulanacak,
-//ayrıca en sonunkinde de de aynı sorunvar. belki fazladan ağ eklenir ama gösteirlmez. onun başlangıcı bulunur bitişi de verilir.
+import ViewAnimator
 class ResultViewController: UIViewController {
     
     @IBOutlet weak var kullanilanIPAdresi: UILabel!
@@ -26,11 +23,17 @@ class ResultViewController: UIViewController {
     var kullanilanIPBinaryString = ""
     var subnetTitleCIDRString = ""
     var subnetBinaryString = ""
+    var fromAnimation : AnimationType?
+    var allCells = [AgInfoCell]()
+
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        fromAnimation = AnimationType.from(direction: .left, offset: 40.0)
         setupView()
         self.calculate()
+        UIView.animate(views: tableView.visibleCells,
+                       animations: [self.fromAnimation!], delay: 0.45)
     }
     func setupView(){
         self.tableView.delegate = self
@@ -41,7 +44,7 @@ class ResultViewController: UIViewController {
         super.viewWillAppear(animated)
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.1607843137, blue: 0.2274509804, alpha: 1)
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.2862745098, green: 0.5764705882, blue: 0.6588235294, alpha: 1)
         self.setNeedsStatusBarAppearanceUpdate()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -66,9 +69,10 @@ extension ResultViewController:UITableViewDelegate, UITableViewDataSource{
         guard let cell = Bundle.main.loadNibNamed("AgInfoCell", owner: self, options: nil)?.first as? AgInfoCell else {return UITableViewCell()}
         cell.agAdiLabel.text = self.dataListResult[indexPath.row].agName
         cell.hostSayisiLabel.text = self.dataListResult[indexPath.row].agAgAdresi
-        cell.accessoryType = .disclosureIndicator
+        cell.detailicon.isHidden = false
         print(self.dataListResult[indexPath.row].agBitisIp)
         print(self.dataListResult[indexPath.row].agYayinAdresi)
+        allCells.append(cell)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

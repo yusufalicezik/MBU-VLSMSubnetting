@@ -7,5 +7,8 @@ target 'MBU-AgTasarimProje' do
 
   # Pods for MBU-AgTasarimProje
 pod 'IQKeyboardManagerSwift'
+pod 'SwiftyShadow', '~> 1.7.0'
+pod "Pastel"
+pod "ViewAnimator"
 
 end
