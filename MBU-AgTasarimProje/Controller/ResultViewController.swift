@@ -25,7 +25,7 @@ class ResultViewController: UIViewController {
     var subnetBinaryString = ""
     var fromAnimation : AnimationType?
     var allCells = [AgInfoCell]()
-
+    var firstTime = true
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -252,7 +252,6 @@ extension ResultViewController{
     }
     func getSubnetMaskString(_ subnetMask:Int64)->[Int64]{
         var returnedMask:String = ""
-        self.subnetBinaryString = ""
         var returnedMaskList = [Int64]()
         for i in 1...32{
             if i<=subnetMask{
@@ -330,11 +329,14 @@ extension ResultViewController{
             returnetByteList.append(stringItem)
         }
         //for CIDR
-        for i in 0...returnetByteList.count-1{
-            self.subnetBinaryString+=returnetByteList[i]
-            if i != returnetByteList.count-1{
-                self.subnetBinaryString+="."
+        if firstTime{
+            for i in 0...returnetByteList.count-1{
+                self.subnetBinaryString+=returnetByteList[i]
+                if i != returnetByteList.count-1{
+                    self.subnetBinaryString+="."
+                }
             }
+            self.firstTime = false
         }
         return returnetByteList
     }
