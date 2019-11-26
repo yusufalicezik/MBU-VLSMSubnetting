@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class SplashViewController: UIViewController {
     
     @IBOutlet weak var degiskenButton: UIButton!
     @IBOutlet weak var sabitButton: UIButton!
@@ -39,6 +39,8 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(inputVC!, animated: true)
     }
     @IBAction func subnetCalculateClicked(_ sender: Any) {
+        let inputVC = storyboard?.instantiateViewController(withIdentifier: "SubnetVC") as? SubnetCalculateViewController
+        self.navigationController?.pushViewController(inputVC!, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Splash View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MBU_AgTasarimProje" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SplashViewController" customModule="MBU_AgTasarimProje" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -660,6 +660,106 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mA1-R7-EAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2486.9565217391305" y="661.60714285714278"/>
+        </scene>
+        <!--Subnet Calculate View Controller-->
+        <scene sceneID="qio-W7-thC">
+            <objects>
+                <viewController storyboardIdentifier="SubnetVC" id="oaK-HQ-s6l" customClass="SubnetCalculateViewController" customModule="MBU_AgTasarimProje" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Kb-db-EfV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-QV-zz5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alt Ağ Maskesi Hesapla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0T-ev-Y5X">
+                                        <rect key="frame" x="10" y="17" width="394" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKy-EM-fB5">
+                                        <rect key="frame" x="10" y="8.5" width="18" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="backicon">
+                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.88396297089999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonClicked:" destination="qnc-aK-jzV" eventType="touchUpInside" id="NUi-d2-h9r"/>
+                                            <action selector="backButtonClicked:" destination="bAy-NF-ngI" eventType="touchUpInside" id="ehj-9b-ceT"/>
+                                            <action selector="backButtonClicked:" destination="0VM-8a-Ef4" eventType="touchUpInside" id="xVv-SV-TSq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.57647058819999997" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="X0T-ev-Y5X" secondAttribute="bottom" constant="10" id="32y-jH-g8O"/>
+                                    <constraint firstAttribute="trailing" secondItem="X0T-ev-Y5X" secondAttribute="trailing" constant="10" id="AxF-Bu-1rz"/>
+                                    <constraint firstItem="X0T-ev-Y5X" firstAttribute="leading" secondItem="zuF-QV-zz5" secondAttribute="leading" constant="10" id="StC-5U-JE2"/>
+                                    <constraint firstAttribute="height" constant="50" id="phX-Hd-hdL"/>
+                                    <constraint firstItem="MKy-EM-fB5" firstAttribute="leading" secondItem="zuF-QV-zz5" secondAttribute="leading" constant="10" id="tMp-PI-PmS"/>
+                                    <constraint firstItem="MKy-EM-fB5" firstAttribute="centerY" secondItem="X0T-ev-Y5X" secondAttribute="centerY" constant="-5" id="zeq-7c-rzI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlQ-zG-M42">
+                                <rect key="frame" x="0.0" y="94" width="414" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="IP / Subnet Mask" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teM-Ke-Wxb">
+                                        <rect key="frame" x="10" y="5" width="394" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="WZV-Nd-M0S"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIp-Yn-3Aq">
+                                        <rect key="frame" x="157" y="55" width="100" height="35"/>
+                                        <color key="backgroundColor" red="0.33313143249999999" green="0.63682579989999999" blue="0.78160738949999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="mnd-WO-9Ml"/>
+                                            <constraint firstAttribute="width" constant="100" id="yR9-0l-1Kq"/>
+                                        </constraints>
+                                        <state key="normal" title="Hesapla">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.12958297129999999" green="0.40714848040000001" blue="0.7029806972" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="calculateButtonClicked:" destination="oaK-HQ-s6l" eventType="touchUpInside" id="Rxy-ve-uvy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28627450980392155" green="0.57647058823529407" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="teM-Ke-Wxb" firstAttribute="leading" secondItem="HlQ-zG-M42" secondAttribute="leading" constant="10" id="53G-Of-GFo"/>
+                                    <constraint firstItem="wIp-Yn-3Aq" firstAttribute="centerX" secondItem="HlQ-zG-M42" secondAttribute="centerX" id="6EV-7w-AJf"/>
+                                    <constraint firstAttribute="bottom" secondItem="wIp-Yn-3Aq" secondAttribute="bottom" constant="10" id="JZg-uQ-byq"/>
+                                    <constraint firstItem="teM-Ke-Wxb" firstAttribute="top" secondItem="HlQ-zG-M42" secondAttribute="top" constant="5" id="KZ5-Ab-oye"/>
+                                    <constraint firstAttribute="trailing" secondItem="teM-Ke-Wxb" secondAttribute="trailing" constant="10" id="MN1-kD-1eC"/>
+                                    <constraint firstAttribute="height" constant="100" id="Xho-ix-Ln9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jZv-j0-QGU" firstAttribute="trailing" secondItem="zuF-QV-zz5" secondAttribute="trailing" id="4lU-D5-e01"/>
+                            <constraint firstItem="HlQ-zG-M42" firstAttribute="top" secondItem="zuF-QV-zz5" secondAttribute="bottom" id="8LG-aU-m4R"/>
+                            <constraint firstItem="HlQ-zG-M42" firstAttribute="leading" secondItem="jZv-j0-QGU" secondAttribute="leading" id="N9X-Sy-7fO"/>
+                            <constraint firstItem="zuF-QV-zz5" firstAttribute="leading" secondItem="7Kb-db-EfV" secondAttribute="leading" id="asI-xa-rOu"/>
+                            <constraint firstItem="zuF-QV-zz5" firstAttribute="top" secondItem="jZv-j0-QGU" secondAttribute="top" id="b84-t3-9LA"/>
+                            <constraint firstItem="jZv-j0-QGU" firstAttribute="trailing" secondItem="HlQ-zG-M42" secondAttribute="trailing" id="sgW-HE-u2E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jZv-j0-QGU"/>
+                    </view>
+                    <connections>
+                        <outlet property="calculateButton" destination="wIp-Yn-3Aq" id="hih-Ir-KD5"/>
+                        <outlet property="inputTxtField" destination="teM-Ke-Wxb" id="XJR-F1-2PN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="duJ-zN-1lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3216" y="661"/>
         </scene>
         <!--Detail Result View Controller-->
         <scene sceneID="gez-SH-Fee">
