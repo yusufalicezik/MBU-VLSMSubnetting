@@ -28,6 +28,10 @@ class FLSMResultViewController: UIViewController {
     fileprivate var firstTime = true
     private var subnetBinaryString = ""
     private var indexNo = 0
+    private var kullanilanIPString = ""
+    private var kullanilanSubnetString = ""
+    private var kullanilanIPBinaryString = ""
+    private var ayirilanIPCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +62,9 @@ class FLSMResultViewController: UIViewController {
     }
     
     @IBAction func tableButtonClicked(_ sender: Any) {
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "allVC") as? AllResultsViewController
+        vc?.dataList = self.dataListResult
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 
 }
@@ -71,12 +77,20 @@ extension FLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = Bundle.main.loadNibNamed("AgInfoCell", owner: self, options: nil)?.first as? AgInfoCell else {return UITableViewCell()}
         cell.agAdiLabel.text = self.dataListResult[indexPath.row].agName
-        cell.hostSayisiLabel.text = self.dataListResult[indexPath.row].agBaslangicIp
+        cell.hostSayisiLabel.text = self.dataListResult[indexPath.row].agAgAdresi
         cell.detailicon.isHidden = false
         print(self.dataListResult[indexPath.row].agBitisIp)
         print(self.dataListResult[indexPath.row].agYayinAdresi)
         allCells.append(cell)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailResultViewController
+        let secilenAg = self.dataListResult[indexPath.row]
+        detailsVC?.propertyList = [secilenAg.agName,secilenAg.agHostSayisi, secilenAg.ayrilanIPSayisi,secilenAg.kullanılanIPAdres, secilenAg.bostaKalanIPAdress,secilenAg.agAgAdresi,secilenAg.agBaslangicIp, secilenAg.agBitisIp, secilenAg.agYayinAdresi, secilenAg.agAltAgMaskesi]
+        self.navigationController?.pushViewController(detailsVC!, animated: true)
     }
     
     
@@ -85,16 +99,18 @@ extension FLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
 extension FLSMResultViewController{
     private func calculateFLSM(){
         self.subnetCount = self.dataList.count
+        
         var currentExp = 0
         var last_i = 0
         for i in 0..<100{
             currentExp = 2.getExp(exp: i)
-            if (currentExp) >= subnetCount{
+            if (currentExp) >= subnetCount-1{
                 last_i = i
                 break
             }
         }
         self.exp1_count = last_i // 6 alt ağ ise 3 olmalı
+        print("sadsadasdasd \(last_i)")
         var seperatedNetwork = ipAdress!.split(separator: "/")
         let subnetMask = Int(seperatedNetwork[1])!
         self.new_subnet_mask = String(subnetMask+self.exp1_count)
@@ -117,7 +133,7 @@ extension FLSMResultViewController{
             }
         }
         print(indexNo)
-        let mList = decimal_and_ip_address_list
+        let mList = decimal_and_ip_address_list //andlenmiş decimal ip adress
         getIncreaseCount() //self.increase_count güncellenecek.
         var currentCounter = 0
         if indexNo == 1{
@@ -138,13 +154,14 @@ extension FLSMResultViewController{
             }
         }
         
-        print("-------////-----")
-        for i in self.allDatas{
-            print(i)
-        }
         saveData()
-        
-        
+        setupUI()
+    }
+    
+    private func setupUI(){
+        self.kullanilanIPAdresi.text = self.ipAdress!
+        self.kullanilanIPBinary.text = self.kullanilanIPBinaryString
+        self.subnetBinary.text = self.kullanilanSubnetString
     }
     
     private func saveData(){
@@ -152,24 +169,32 @@ extension FLSMResultViewController{
                 let ag = AgResult()
                 ag.agName = self.dataList[i].agAdi
                 ag.agHostSayisi = String(self.dataList[i].hostSayisi)
-                ag.agAltAgMaskesi = self.new_subnet_mask
-                ag.agBaslangicIp = self.allDatas[i]
+                ag.agAltAgMaskesi = "/\(self.new_subnet_mask)"
+                ag.agAgAdresi = self.allDatas[i]
+                ag.agBaslangicIp = getBitisIP(indexNo: indexNo, baslangicIP: self.allDatas[i], forBaslangic: true)
                 ag.agBitisIp = getBitisIP(indexNo:indexNo, baslangicIP:self.allDatas[i])
                 ag.agYayinAdresi = getYayinIP(indexNo:indexNo, baslangicIP:self.allDatas[i])
+                ag.ayrilanIPSayisi = "\(self.ayirilanIPCount-2)" //128 ise 126 (baslangic ve yayin haric)
+                ag.kullanılanIPAdres = String(self.dataList[i].hostSayisi)
+                ag.bostaKalanIPAdress = "\((self.ayirilanIPCount-2)-self.dataList[i].hostSayisi)"
                 self.dataListResult.append(ag)
-            print(ag.agYayinAdresi)
         }
-        //self.tableView.reloadData()
     }
     
-    private func getBitisIP(indexNo:Int, baslangicIP:String)->String{
+    private func getBitisIP(indexNo:Int, baslangicIP:String, forBaslangic:Bool = false)->String{
         var returnedString = ""
         if indexNo == 2{
+            self.ayirilanIPCount = 255*increase_count // örn: 32.255
             let splittedIP = baslangicIP.split(separator: ".")
             var splittedInt = splittedIP.map{Int($0)}
-            splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-1
-            if indexNo != 3{
-                splittedInt[indexNo+1] = 254
+            
+            if forBaslangic{
+                splittedInt[indexNo+1] = splittedInt[indexNo+1]!+1
+            }else{
+                splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-1
+                if indexNo != 3{
+                    splittedInt[indexNo+1] = 254
+                }
             }
             
             for i in 0..<splittedInt.count{
@@ -180,12 +205,18 @@ extension FLSMResultViewController{
                 }
             }
         }else if indexNo == 1{
+            self.ayirilanIPCount = 255*255*increase_count
             let splittedIP = baslangicIP.split(separator: ".")
             var splittedInt = splittedIP.map{Int($0)}
-            splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-1
-            if indexNo != 2{
-                splittedInt[indexNo+1] = 255
-                splittedInt[indexNo+2] = 254
+            
+            if forBaslangic{
+                splittedInt[indexNo+2] = splittedInt[indexNo+2]!+1
+            }else{
+                splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-1
+                if indexNo != 2{
+                    splittedInt[indexNo+1] = 255
+                    splittedInt[indexNo+2] = 254
+                }
             }
             
             for i in 0..<splittedInt.count{
@@ -196,10 +227,15 @@ extension FLSMResultViewController{
                 }
             }
         }else if indexNo == 3{
+            self.ayirilanIPCount = increase_count
             let splittedIP = baslangicIP.split(separator: ".")
             var splittedInt = splittedIP.map{Int($0)}
-            splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-2
             
+            if forBaslangic{
+                splittedInt[indexNo] = splittedInt[indexNo]! + 1
+            }else{
+                splittedInt[indexNo] = splittedInt[indexNo]! + self.increase_count-2
+            }
             
             for i in 0..<splittedInt.count{
                 if i != splittedInt.count-1{
@@ -265,14 +301,13 @@ extension FLSMResultViewController{
     }
     
     private func getIncreaseCount(){
-        var currentCount = 0
-        for i in 1...exp1_count{
-            if i == 1{
-                currentCount = 128
-            }else{
+        var currentCount = 256
+        for i in 0...exp1_count{
+            if i != 1{
                 currentCount/=2
             }
         }
+        print("artis: \(currentCount)")
         self.increase_count = currentCount
     }
     
@@ -305,6 +340,14 @@ extension FLSMResultViewController{
         var lastIpAdresWithSubnet = ""
         let ipAddressByteList = getIpAdressListForByteList(ipAdressList) //string olarak aldık 111111, 000000
         let subnetMaskByteList = getSubnetMaskForByteList(subnedMaskListInt)
+        
+        subnetMaskByteList.forEach{self.kullanilanSubnetString+="\($0)."}
+        self.kullanilanSubnetString.removeLast()
+        
+        ipAddressByteList.forEach{self.kullanilanIPBinaryString+="\($0)."}
+        self.kullanilanIPBinaryString.removeLast()
+        
+        print(kullanilanIPBinaryString)
         for i in 0..<ipAddressByteList.count{
             let ipOktet = ipAddressByteList[i]
             let subnetOktet = subnetMaskByteList[i]
