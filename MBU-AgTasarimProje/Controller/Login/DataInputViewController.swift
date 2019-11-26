@@ -9,7 +9,11 @@
 import UIKit
 import SwiftyShadow
 
-class VLSMViewController: UIViewController {
+enum CalculatingType{
+    case VLSM
+    case FLSM
+}
+class DataInputViewController: UIViewController {
 
     @IBOutlet weak var agAdiTextField: UITextField!
     @IBOutlet weak var hostSayisiTextField: UITextField!
@@ -17,13 +21,28 @@ class VLSMViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hesaplaButton: UIButton!
     @IBOutlet weak var ipAddressTextField: UITextField!
-    var dataList:[Ag] = []
+    @IBOutlet weak var headerTitleLabel: UILabel!
+    
+    private var dataList:[Ag] = []
+    public var calculatingType:CalculatingType = .VLSM //Default
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         // Do any additional setup after loading the view.
     }
     func setupView(){
+        
+        switch self.calculatingType {
+        case .VLSM:
+            self.headerTitleLabel.text = "Değişken Alt Ağlara Bölme"
+            print("VLSM Selected")
+        default: //FLSM
+            self.headerTitleLabel.text = "Sabit Alt Ağlara Bölme"
+           print("FLSM selected")
+        }
+        
+        
         self.agAdiTextField.layer.cornerRadius = 7
         self.hostSayisiTextField.layer.cornerRadius = 7
         self.hostSayisiTextField.layer.cornerRadius = 7
@@ -74,24 +93,37 @@ class VLSMViewController: UIViewController {
                     return ag1.hostSayisi > ag2.hostSayisi
                 }
                 self.tableView.reloadData()
+                self.agAdiTextField.text = ""
+                self.hostSayisiTextField.text = ""
             }
         }
     }
+    
     @IBAction func hesaplaButtonClicked(_ sender: Any) {
         if !self.ipAddressTextField.text!.isEmpty && ipAdressFormat() && self.dataList.count > 0{
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultVC") as? ResultViewController
-            self.dataList.append(Ag(agAdi: "", hostSayisi: 1))
-            vc?.dataList = self.dataList
-            vc?.ipAdress = self.ipAddressTextField.text!
-            self.navigationController?.pushViewController(vc!, animated: true)
+            switch self.calculatingType {
+            case .VLSM:
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultVC") as? VLSMResultViewController
+                    self.dataList.append(Ag(agAdi: "", hostSayisi: 1))
+                    vc?.dataList = self.dataList
+                    vc?.ipAdress = self.ipAddressTextField.text!
+                    self.navigationController?.pushViewController(vc!, animated: true)
+            default: //FLSM
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultVCFLSM") as? FLSMResultViewController
+                    self.dataList.append(Ag(agAdi: "", hostSayisi: 1))
+                    vc?.dataList = self.dataList
+                    vc?.ipAdress = self.ipAddressTextField.text!
+                    self.navigationController?.pushViewController(vc!, animated: true)
+            }
         }
     }
+    
     func ipAdressFormat()->Bool{
         let firstSep = (self.ipAddressTextField.text?.split(separator: "/"))!
         let ipList = getIpAdressInt(String(firstSep[0]))
-     
         return (ipList.count < 4) || (!(self.ipAddressTextField.text?.contains("/"))!) ? false : true
     }
+    
     func getIpAdressInt(_ ipAdress:String)->[Int]{
         let resultIPListString = ipAdress.split(separator: ".")
         let resultIPList = resultIPListString.map({
@@ -109,7 +141,7 @@ class VLSMViewController: UIViewController {
 
     
 }
-extension VLSMViewController:UITableViewDelegate, UITableViewDataSource{
+extension DataInputViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataList.count
     }
@@ -134,7 +166,7 @@ extension VLSMViewController:UITableViewDelegate, UITableViewDataSource{
 }
 extension UIApplication {
     var statusBarView: UIView? {
-        if responds(to: Selector("statusBar")) {
+        if responds(to: Selector(("statusBar"))) {
             return value(forKey: "statusBar") as? UIView
         }
         return nil

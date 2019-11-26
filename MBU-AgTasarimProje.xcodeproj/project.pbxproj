@@ -14,15 +14,16 @@
 		481918F7236238E400D43D88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481918F5236238E400D43D88 /* Main.storyboard */; };
 		481918F9236238E600D43D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 481918F8236238E600D43D88 /* Assets.xcassets */; };
 		481918FC236238E600D43D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481918FA236238E600D43D88 /* LaunchScreen.storyboard */; };
-		4819190523623B9300D43D88 /* VLSMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819190423623B9300D43D88 /* VLSMViewController.swift */; };
+		4819190523623B9300D43D88 /* DataInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819190423623B9300D43D88 /* DataInputViewController.swift */; };
 		4819190B23624A3C00D43D88 /* Ag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819190A23624A3C00D43D88 /* Ag.swift */; };
-		485E736C23624D10005323ED /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E736B23624D10005323ED /* ResultViewController.swift */; };
+		485E736C23624D10005323ED /* VLSMResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E736B23624D10005323ED /* VLSMResultViewController.swift */; };
 		485E736E2362502E005323ED /* AgResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E736D2362502E005323ED /* AgResult.swift */; };
 		485E7371236250E3005323ED /* Extension + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E7370236250E3005323ED /* Extension + Int.swift */; };
 		485E73762362574F005323ED /* AgInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E73742362574F005323ED /* AgInfoCell.swift */; };
 		485E73772362574F005323ED /* AgInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 485E73752362574F005323ED /* AgInfoCell.xib */; };
 		485E737923626D90005323ED /* DetailResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737823626D90005323ED /* DetailResultViewController.swift */; };
 		485E737B2362EB11005323ED /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E737A2362EB11005323ED /* Extension+String.swift */; };
+		48689DE3238CAC9D00529C2B /* FLSMResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48689DE2238CAC9D00529C2B /* FLSMResultViewController.swift */; };
 		6A47AE8A5375397E7BC60B05 /* Pods_MBU_AgTasarimProje.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6866A7371E12CE7A48C9DA63 /* Pods_MBU_AgTasarimProje.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,15 +37,16 @@
 		481918F8236238E600D43D88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		481918FB236238E600D43D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		481918FD236238E600D43D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4819190423623B9300D43D88 /* VLSMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLSMViewController.swift; sourceTree = "<group>"; };
+		4819190423623B9300D43D88 /* DataInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInputViewController.swift; sourceTree = "<group>"; };
 		4819190A23624A3C00D43D88 /* Ag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ag.swift; sourceTree = "<group>"; };
-		485E736B23624D10005323ED /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		485E736B23624D10005323ED /* VLSMResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLSMResultViewController.swift; sourceTree = "<group>"; };
 		485E736D2362502E005323ED /* AgResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgResult.swift; sourceTree = "<group>"; };
 		485E7370236250E3005323ED /* Extension + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Int.swift"; sourceTree = "<group>"; };
 		485E73742362574F005323ED /* AgInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgInfoCell.swift; sourceTree = "<group>"; };
 		485E73752362574F005323ED /* AgInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgInfoCell.xib; sourceTree = "<group>"; };
 		485E737823626D90005323ED /* DetailResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResultViewController.swift; sourceTree = "<group>"; };
 		485E737A2362EB11005323ED /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		48689DE2238CAC9D00529C2B /* FLSMResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLSMResultViewController.swift; sourceTree = "<group>"; };
 		54A9D41F84423FD7CEDB0420 /* Pods-MBU-AgTasarimProje.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBU-AgTasarimProje.release.xcconfig"; path = "Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje.release.xcconfig"; sourceTree = "<group>"; };
 		6866A7371E12CE7A48C9DA63 /* Pods_MBU_AgTasarimProje.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBU_AgTasarimProje.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E8C0FEE948059589D0DD21 /* Pods-MBU-AgTasarimProje.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBU-AgTasarimProje.debug.xcconfig"; path = "Target Support Files/Pods-MBU-AgTasarimProje/Pods-MBU-AgTasarimProje.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,11 +109,10 @@
 		4819190323623B7A00D43D88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				481918F3236238E400D43D88 /* ViewController.swift */,
-				4819190423623B9300D43D88 /* VLSMViewController.swift */,
-				485E736B23624D10005323ED /* ResultViewController.swift */,
-				485E737823626D90005323ED /* DetailResultViewController.swift */,
-				48076BDA236311D70027EDB1 /* AllResultsViewController.swift */,
+				48689DE1238CAC3400529C2B /* Results */,
+				48689DE0238CAB7D00529C2B /* Login */,
+				48689DDF238CAB6A00529C2B /* FLSM */,
+				48689DDE238CAB6000529C2B /* VLSM */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -142,6 +143,40 @@
 				485E737A2362EB11005323ED /* Extension+String.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		48689DDE238CAB6000529C2B /* VLSM */ = {
+			isa = PBXGroup;
+			children = (
+				485E736B23624D10005323ED /* VLSMResultViewController.swift */,
+			);
+			path = VLSM;
+			sourceTree = "<group>";
+		};
+		48689DDF238CAB6A00529C2B /* FLSM */ = {
+			isa = PBXGroup;
+			children = (
+				48689DE2238CAC9D00529C2B /* FLSMResultViewController.swift */,
+			);
+			path = FLSM;
+			sourceTree = "<group>";
+		};
+		48689DE0238CAB7D00529C2B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				481918F3236238E400D43D88 /* ViewController.swift */,
+				4819190423623B9300D43D88 /* DataInputViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		48689DE1238CAC3400529C2B /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				48076BDA236311D70027EDB1 /* AllResultsViewController.swift */,
+				485E737823626D90005323ED /* DetailResultViewController.swift */,
+			);
+			path = Results;
 			sourceTree = "<group>";
 		};
 		4D35B7D5AAF775D794B6CAD2 /* Pods */ = {
@@ -273,13 +308,14 @@
 				481918F4236238E400D43D88 /* ViewController.swift in Sources */,
 				48076BDD23632D330027EDB1 /* AllResultsCell.swift in Sources */,
 				481918F2236238E400D43D88 /* AppDelegate.swift in Sources */,
-				4819190523623B9300D43D88 /* VLSMViewController.swift in Sources */,
+				4819190523623B9300D43D88 /* DataInputViewController.swift in Sources */,
 				485E7371236250E3005323ED /* Extension + Int.swift in Sources */,
 				485E737923626D90005323ED /* DetailResultViewController.swift in Sources */,
+				48689DE3238CAC9D00529C2B /* FLSMResultViewController.swift in Sources */,
 				485E736E2362502E005323ED /* AgResult.swift in Sources */,
 				48076BDB236311D70027EDB1 /* AllResultsViewController.swift in Sources */,
 				4819190B23624A3C00D43D88 /* Ag.swift in Sources */,
-				485E736C23624D10005323ED /* ResultViewController.swift in Sources */,
+				485E736C23624D10005323ED /* VLSMResultViewController.swift in Sources */,
 				485E73762362574F005323ED /* AgInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8YH2HY6PT8;
 				INFOPLIST_FILE = "MBU-AgTasarimProje/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,6 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8YH2HY6PT8;
 				INFOPLIST_FILE = "MBU-AgTasarimProje/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

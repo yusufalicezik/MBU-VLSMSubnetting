@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
     @IBOutlet weak var degiskenButton: UIButton!
     @IBOutlet weak var sabitButton: UIButton!
     @IBOutlet weak var altAgButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupParallax()
@@ -27,11 +28,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func vlsmClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "vlsmVC") as? VLSMViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let inputVC = storyboard?.instantiateViewController(withIdentifier: "InputVC") as? DataInputViewController
+        inputVC?.calculatingType = .VLSM
+        self.navigationController?.pushViewController(inputVC!, animated: true)
     }
     
     @IBAction func flsmClicked(_ sender: Any) {
+        let inputVC = storyboard?.instantiateViewController(withIdentifier: "InputVC") as? DataInputViewController
+        inputVC?.calculatingType = .FLSM
+        self.navigationController?.pushViewController(inputVC!, animated: true)
     }
     @IBAction func subnetCalculateClicked(_ sender: Any) {
     }

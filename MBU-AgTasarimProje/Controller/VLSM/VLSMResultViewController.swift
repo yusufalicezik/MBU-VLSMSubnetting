@@ -8,25 +8,27 @@
 
 import UIKit
 import ViewAnimator
-class ResultViewController: UIViewController {
+class VLSMResultViewController: UIViewController {
     
     @IBOutlet weak var kullanilanIPAdresi: UILabel!
     @IBOutlet weak var kullanilanIPBinary: UILabel!
     @IBOutlet weak var subnetTitleCIDR: UILabel!
     @IBOutlet weak var subnetBinary: UILabel!
-    
-    var dataList:[Ag] = []
-    var dataListResult:[AgResult] = []
-    var ipAdress:String?
-    var sayac = 0
-    var kullanilanIPAdresiString = ""
-    var kullanilanIPBinaryString = ""
-    var subnetTitleCIDRString = ""
-    var subnetBinaryString = ""
-    var fromAnimation : AnimationType?
-    var allCells = [AgInfoCell]()
-    var firstTime = true
     @IBOutlet weak var tableView: UITableView!
+
+    public var dataList:[Ag] = []
+    public var ipAdress:String?
+    
+    private var dataListResult:[AgResult] = []
+    private var sayac = 0
+    private var kullanilanIPAdresiString = ""
+    private var kullanilanIPBinaryString = ""
+    private var subnetTitleCIDRString = ""
+    private var subnetBinaryString = ""
+    fileprivate var fromAnimation : AnimationType?
+    fileprivate var allCells = [AgInfoCell]()
+    fileprivate var firstTime = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fromAnimation = AnimationType.from(direction: .left, offset: 40.0)
@@ -58,9 +60,8 @@ class ResultViewController: UIViewController {
         vc?.dataList = self.dataListResult
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
 }
-extension ResultViewController:UITableViewDelegate, UITableViewDataSource{
+extension VLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataListResult.count-1
     }
@@ -75,6 +76,7 @@ extension ResultViewController:UITableViewDelegate, UITableViewDataSource{
         allCells.append(cell)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailResultViewController
@@ -84,7 +86,7 @@ extension ResultViewController:UITableViewDelegate, UITableViewDataSource{
     }
 }
 
-extension ResultViewController{
+extension VLSMResultViewController{
     func calculate(){
         sayac = 0
         guard let _ = self.ipAdress else {return}
@@ -145,6 +147,7 @@ extension ResultViewController{
                 }else{
                     ipAddressList[ipAddressList.count-1]+=ipExps[i]
                 }
+
                 print(ipAddressList[0],".",ipAddressList[1],".",ipAddressList[2],".",ipAddressList[3])
             }
             tempAgResult.agName = agAdi
@@ -362,7 +365,7 @@ extension ResultViewController{
 }
 
 
-extension ResultViewController{
+extension VLSMResultViewController{
     func convertStringBinaryListToDecimalString( _ binaryString: [String] )->String{
         var birlesmisString = ""
         var returnetString = ""
