@@ -12,6 +12,8 @@ class SubnetCalculateViewController: UIViewController {
 
     @IBOutlet weak var inputTxtField: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
+    @IBOutlet weak var agAdresiLabel: UILabel!
+    @IBOutlet weak var agAdresiBinaryLabel: UILabel!
     
     private let calculate = GlobalFuncstions.shared
     
@@ -44,7 +46,7 @@ class SubnetCalculateViewController: UIViewController {
     }
     
     private func calculateSubnetMask(_ ipAddress:String){
-        var seperatedNetwork = ipAddress.split(separator: "/")
+        let seperatedNetwork = ipAddress.split(separator: "/")
         let subnetMask = Int(seperatedNetwork[1])!
         let ipAdressList = calculate.getIpAdressInt(String(seperatedNetwork[0]))
         let subnedMaskListInt:[Int64] = calculate.getSubnetMaskString(Int64(subnetMask))
@@ -52,8 +54,13 @@ class SubnetCalculateViewController: UIViewController {
         print(sub_ip_address)
         
         var decimal_sub_ip_address = calculate.getDecimalIPAdress(sub_ip_address)
-        decimal_sub_ip_address.removeLast()
+        decimal_sub_ip_address.removeLast() //. yı silmek için
         print(decimal_sub_ip_address)
+        
+        DispatchQueue.main.async {
+            self.agAdresiLabel.text = decimal_sub_ip_address
+            self.agAdresiBinaryLabel.text = sub_ip_address
+        }
         
     }
 }

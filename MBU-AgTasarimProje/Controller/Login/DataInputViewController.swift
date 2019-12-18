@@ -78,11 +78,17 @@ class DataInputViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden  = true
          UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.2862745098, green: 0.5764705882, blue: 0.6588235294, alpha: 1)
          self.setNeedsStatusBarAppearanceUpdate()
         if self.dataList.count > 0{
             self.dataList.removeLast()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden  = false
     }
 
     @IBAction func ekleButtonClicked(_ sender: Any) {
@@ -119,12 +125,12 @@ class DataInputViewController: UIViewController {
     }
     
     func ipAdressFormat()->Bool{
-        let firstSep = (self.ipAddressTextField.text?.split(separator: "/"))!
-        let ipList = getIpAdressInt(String(firstSep[0]))
+        let firstSep = (self.ipAddressTextField.text?.split(separator: "/"))! //ör: 192.168.1.1 / 16
+        let ipList = getIpAdressInt(String(firstSep[0])) // 192.168.1.1
         return (ipList.count < 4) || (!(self.ipAddressTextField.text?.contains("/"))!) ? false : true
     }
     
-    func getIpAdressInt(_ ipAdress:String)->[Int]{
+    func getIpAdressInt(_ ipAdress:String)->[Int]{ //tüm oktetleri parçalayıp, integera dönüştürüp, liste halinde döndürür
         let resultIPListString = ipAdress.split(separator: ".")
         let resultIPList = resultIPListString.map({
             Int($0)
@@ -165,10 +171,24 @@ extension DataInputViewController:UITableViewDelegate, UITableViewDataSource{
     
 }
 extension UIApplication {
-    var statusBarView: UIView? {
-        if responds(to: Selector(("statusBar"))) {
-            return value(forKey: "statusBar") as? UIView
-        }
-        return nil
+   var statusBarView: UIView? {
+      if #available(iOS 13.0, *) {
+          let tag = 38482
+          let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+
+          if let statusBar = keyWindow?.viewWithTag(tag) {
+              return statusBar
+          } else {
+              guard let statusBarFrame = keyWindow?.windowScene?.statusBarManager?.statusBarFrame else { return nil }
+              let statusBarView = UIView(frame: statusBarFrame)
+              statusBarView.tag = tag
+              keyWindow?.addSubview(statusBarView)
+              return statusBarView
+          }
+      } else if responds(to: Selector(("statusBar"))) {
+          return value(forKey: "statusBar") as? UIView
+      } else {
+          return nil
+      }
     }
 }

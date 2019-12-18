@@ -45,9 +45,17 @@ class SplashViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden  = true
         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.setNeedsStatusBarAppearanceUpdate()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden  = false
+
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

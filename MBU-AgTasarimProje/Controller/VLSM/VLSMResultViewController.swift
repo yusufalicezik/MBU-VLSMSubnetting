@@ -71,8 +71,8 @@ extension VLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
         cell.agAdiLabel.text = self.dataListResult[indexPath.row].agName
         cell.hostSayisiLabel.text = self.dataListResult[indexPath.row].agAgAdresi
         cell.detailicon.isHidden = false
-        print(self.dataListResult[indexPath.row].agBitisIp)
-        print(self.dataListResult[indexPath.row].agYayinAdresi)
+//        print(self.dataListResult[indexPath.row].agBitisIp)
+//        print(self.dataListResult[indexPath.row].agYayinAdresi)
         allCells.append(cell)
         return cell
     }
@@ -81,7 +81,7 @@ extension VLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
         self.tableView.deselectRow(at: indexPath, animated: true)
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailResultViewController
         let secilenAg = self.dataListResult[indexPath.row]
-        detailsVC?.propertyList = [secilenAg.agName,secilenAg.agHostSayisi, secilenAg.ayrilanIPSayisi,secilenAg.kullanılanIPAdres, secilenAg.bostaKalanIPAdress,secilenAg.agAgAdresi,secilenAg.agBaslangicIp, secilenAg.agBitisIp, secilenAg.agYayinAdresi, secilenAg.agAltAgMaskesi]
+        detailsVC?.propertyList = [secilenAg.agName,secilenAg.agHostSayisi, secilenAg.ayrilanIPSayisi,secilenAg.kullanılanIPAdres, secilenAg.bostaKalanIPAdress,secilenAg.agAgAdresi,secilenAg.agBaslangicIp, secilenAg.agBitisIp, secilenAg.agYayinAdresi, secilenAg.agAltAgMaskesi] //seçilen ağın özelliklerini gönderdik.
         self.navigationController?.pushViewController(detailsVC!, animated: true)
     }
 }
@@ -104,15 +104,14 @@ extension VLSMResultViewController{
                     break
                 }
             }
-            let withSubnetIpAdress = getWithSubnetIpAdress(self.ipAdress!)
-            print(withSubnetIpAdress) //gelen 2 lik gerçek(dönüştürülmüş) ağ adresi. andlenmiş. Bu 10 luğa çevirilip yollanacak.
+            let withSubnetIpAdress = getWithSubnetIpAdress(self.ipAdress!) //ip adresini subnet ile andleyip, binary dönüştürür. (11000000.10101000.00000000.00000000)
             self.kullanilanIPBinaryString = withSubnetIpAdress
-            let decimalIPAdress = getDecimalIPAdress(withSubnetIpAdress)
-            print(decimalIPAdress) //10 luk andlenmiş dönüştürülmüş adres
+            let decimalIPAdress = getDecimalIPAdress(withSubnetIpAdress) //andlenmiş binary adresini decimal dönüştür. 192.168.0.0
             kullanilanIPAdresiString = ""
             for i in 0...decimalIPAdress.count-2{
-                self.kullanilanIPAdresiString+=decimalIPAdress[i]
+                self.kullanilanIPAdresiString+=decimalIPAdress[i] //arayüz için. -2 sebebi sonunda . var
             }
+            //1000 ağ için, 1024, decimal andlenmiş ip adresi ve ağ adi
             self.showIpRange(ipExps,decimalIPAdress, networkItem.agAdi)
             self.dataListResult[sayac].agName = networkItem.agAdi
             self.dataListResult[sayac].agHostSayisi = String(networkItem.hostSayisi)
@@ -137,7 +136,7 @@ extension VLSMResultViewController{
         let tempAgResult = AgResult()
         var totalNetworkCount = 0
         for ipExpItem in ipExps{
-            totalNetworkCount+=ipExpItem
+            totalNetworkCount+=ipExpItem //toplam host sayısını güncelle
         }
         var ipAddressList = getIpAdressInt(ipAdress) //. ya göre split işlemi yapar ve her 4 lük biti ayırır. int olarak döndürür.
         if totalNetworkCount < 255{
@@ -145,7 +144,7 @@ extension VLSMResultViewController{
                 if i == -1{
                     //ipAddressList[ipAddressList.count-1]
                 }else{
-                    ipAddressList[ipAddressList.count-1]+=ipExps[i]
+                    ipAddressList[ipAddressList.count-1]+=ipExps[i] //192.168.1.0 örn, 255 den küçükse 0 kısmını totalNework kadar arttır.
                 }
 
                 print(ipAddressList[0],".",ipAddressList[1],".",ipAddressList[2],".",ipAddressList[3])
@@ -181,7 +180,7 @@ extension VLSMResultViewController{
                     //ipAddressList[ipAddressList.count-1]
                 }else{
                     var total = ipAddressList[3]+ipExps[i]
-                    if total > 255{ // while ekle, extra 255 den kucuk olana kadar. sayac kadar da arttır.
+                    if total > 255{
                         var sayac = 0
                         while(total>255){
                             total = total-256
@@ -231,6 +230,23 @@ extension VLSMResultViewController{
             }
         }
     }
+    
+    // MARK: - Gelen IP Adresi : 192.168.1.1/16
+    func getWithSubnetIpAdress(_ ipAdress:String)->String{
+        var returnedIP = ""
+        let seperatedNetwork = ipAdress.split(separator: "/") //192.168.1.1 ve 16 yı ayırdık.
+        let ipAdressList = getIpAdressInt(String(seperatedNetwork[0]))//"192.168.1.1" lik kısımı ayrıp int dizisi olarak döndürür
+        self.subnetTitleCIDRString = String(seperatedNetwork[1])
+        let subnetMask = Int64(seperatedNetwork[1])! // "/16 ise 16yı int olarak aldık"
+        let subnedMaskListInt:[Int64] = getSubnetMaskString(subnetMask) // 16 ise 16 tane 1 olan binary getir.
+        returnedIP = AndTwoValue(ipAdressList,subnedMaskListInt)
+        for i in subnedMaskListInt{
+            print(i)
+        }
+        return returnedIP
+    }
+    
+    //MARK: - Gelen ip adresini (192.168.1.1) [192, 168, 1, 1] int dizisine çevir
     func getIpAdressInt(_ ipAdress:String)->[Int]{
         let resultIPListString = ipAdress.split(separator: ".")
         let resultIPList = resultIPListString.map({
@@ -238,21 +254,8 @@ extension VLSMResultViewController{
         })
         return resultIPList as! [Int]
     }
-
-    ////////////////////////////-------------///////////////////
-    func getWithSubnetIpAdress(_ ipAdress:String)->String{
-        var returnedIP = ""
-        var seperatedNetwork = ipAdress.split(separator: "/")
-        let ipAdressList = getIpAdressInt(String(seperatedNetwork[0]))//"192.168.1.10" luk kısımı ayrıp int olarak döndürür
-        self.subnetTitleCIDRString = String(seperatedNetwork[1])
-        let subnetMask = Int64(seperatedNetwork[1])! // "/16 ise 16yı int olarak aldık"
-        let subnedMaskListInt:[Int64] = getSubnetMaskString(subnetMask)
-        returnedIP = AndTwoValue(ipAdressList,subnedMaskListInt)
-        for i in subnedMaskListInt{
-            print(i)
-        }
-        return returnedIP
-    }
+    
+    //MARK: - 16 gelir, [11111111,11111111,00000000,00000000] 16 tane 1 olan dizi döner.
     func getSubnetMaskString(_ subnetMask:Int64)->[Int64]{
         var returnedMask:String = ""
         var returnedMaskList = [Int64]()
@@ -269,6 +272,8 @@ extension VLSMResultViewController{
         }
         return returnedMaskList
     }
+    
+    //MARK: - İp adresi ile subnetin andlenme işlemi
     func AndTwoValue(_ ipAdressList:[Int], _ subnedMaskListInt:[Int64])->String{
         var lastIpAdresWithSubnet = ""
         let ipAddressByteList = getIpAdressListForByteList(ipAdressList) //string olarak aldık 111111, 000000
@@ -289,6 +294,9 @@ extension VLSMResultViewController{
         }
         return lastIpAdresWithSubnet
     }
+    
+    //MARK: - integer ip adres listini, binary string listesine dönüştürür.
+    // gelen : [192, 168, 1, 1] ise [11000000, 10100000, vs..] döner. andleme yapılabilsin diye
     func getIpAdressListForByteList(_ ipAdressList:[Int])->[String]{
         var returnetByteList = [String]()
         for i in 0..<ipAdressList.count{
@@ -302,6 +310,7 @@ extension VLSMResultViewController{
                     byteInt=String(kalan)+byteInt
                     ipOktetItem = ipOktetItem/2
                 }
+                //8 bite tamamlamak için, eğer yukarıda çıkan 2 liğin uzunluğu 8 den azsa, geri kalanını sıfır yap 8 bite tamamla.
                 var newByteInt = ""
                 if byteInt.count < 8{
                     let fark = 8-byteInt.count
@@ -316,11 +325,12 @@ extension VLSMResultViewController{
         return returnetByteList
     }
     
-    
+    //MARK: - [11111111,11111111,00000000,00000000] gelir, aynısı string olarak döner.
     func getSubnetMaskForByteList(_ subnetList:[Int64])->[String]{
         var returnetByteList = [String]()
         for i in subnetList{
             var stringItem = String(i)
+            //yine 8 den az ise, 8 e tamamla 0 koyarak.
             if stringItem.count<8{
                 let fark = 8-stringItem.count
                 var newByteInt = ""
@@ -331,7 +341,7 @@ extension VLSMResultViewController{
             }
             returnetByteList.append(stringItem)
         }
-        //for CIDR
+        // CIDR arayüzde gösterimi için, aralara nokta koy. bunu bir kez yapsın diye firstTime koşulu
         if firstTime{
             for i in 0...returnetByteList.count-1{
                 self.subnetBinaryString+=returnetByteList[i]
@@ -344,9 +354,10 @@ extension VLSMResultViewController{
         return returnetByteList
     }
     
+    //MARK: - Gelen 11111111.0000000 vs, decimal string döndür.
     func getDecimalIPAdress(_ withSubnetIpAdress:String)->String{
         var decimalString = ""
-        let binaryList = withSubnetIpAdress.split(separator: ".")
+        let binaryList = withSubnetIpAdress.split(separator: ".") //gelen binary listi . ya göre ayır.
         for oktet in binaryList{
             var oktetSumResult = 0
             for j in 0...7{

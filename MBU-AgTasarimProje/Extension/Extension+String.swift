@@ -17,7 +17,7 @@ extension String {
         return self[i ..< i + 1]
     }
     
-    func substring(fromIndex: Int) -> String {
+    func substring(fromIndex: Int) -> String { 
         return self[min(fromIndex, length) ..< length]
     }
     

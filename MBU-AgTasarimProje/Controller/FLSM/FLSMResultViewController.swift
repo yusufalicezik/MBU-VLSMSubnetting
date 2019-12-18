@@ -98,8 +98,8 @@ extension FLSMResultViewController:UITableViewDelegate, UITableViewDataSource{
 
 extension FLSMResultViewController{
     private func calculateFLSM(){
-        self.subnetCount = self.dataList.count
         
+        self.subnetCount = self.dataList.count
         var currentExp = 0
         var last_i = 0
         for i in 0..<100{
@@ -110,23 +110,22 @@ extension FLSMResultViewController{
             }
         }
         self.exp1_count = last_i // 6 alt ağ ise 3 olmalı
-        print("sadsadasdasd \(last_i)")
         var seperatedNetwork = ipAdress!.split(separator: "/")
-        let subnetMask = Int(seperatedNetwork[1])!
-        self.new_subnet_mask = String(subnetMask+self.exp1_count)
+        let subnetMask = Int(seperatedNetwork[1])! // /16
+        self.new_subnet_mask = String(subnetMask+self.exp1_count) // 16 + 3
         print(new_subnet_mask)
         
-        let ipAdressList = getIpAdressInt(String(seperatedNetwork[0]))//"192.168.1.10" luk kısımı ayrıp int olarak döndürür
-        let subnedMaskListInt:[Int64] = getSubnetMaskString(Int64(subnetMask))
+        let ipAdressList = getIpAdressInt(String(seperatedNetwork[0]))//"192.168.1.10" luk kısımı ayrıp int dizisi olarak döndürür
+        let subnedMaskListInt:[Int64] = getSubnetMaskString(Int64(subnetMask)) //16 tane 1 olan dizi döner.
 
         let starting_ip_address = AndTwoValue(ipAdressList,subnedMaskListInt)
-        print(starting_ip_address)
+        print(starting_ip_address) //tüm ağın baslangic ip adresi (andlenmiş vs.)
         
-        let decimal_starting_ip_address = getDecimalIPAdress(starting_ip_address)
+        let decimal_starting_ip_address = getDecimalIPAdress(starting_ip_address) //decimal
         //andlenmiş ip adres üzerinden;
         let decimal_and_ip_address_list = decimal_starting_ip_address.split(separator: ".")
         
-        for i in 0..<decimal_and_ip_address_list.count{
+        for i in 0..<decimal_and_ip_address_list.count{ //0 olan kısımı buluruz. 192.168.0.0 ise 2. index
             if Int(decimal_and_ip_address_list[i]) == 0{
                 indexNo = i
                 break
@@ -140,7 +139,7 @@ extension FLSMResultViewController{
             for i in 0..<self.dataList.count{
                 let addedString = "\(mList[0]).\(currentCounter).\(mList[2]).\(mList[3])"
             self.allDatas.append(addedString)
-                currentCounter = self.increase_count*(i+1)
+                currentCounter = self.increase_count*(i+1) //0, 32, 64 şeklinde sabit artış.
             }
         }else if indexNo == 2{
             for i in 0..<self.dataList.count{
