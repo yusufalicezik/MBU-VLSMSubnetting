@@ -92,7 +92,7 @@ extension VLSMResultViewController{
         guard let _ = self.ipAdress else {return}
         if self.dataList.count <= 0 {return}
         var ipExps = [Int]()
-        for networkItem in self.dataList {
+        for networkItem in self.dataList { //en yakın 2 üzeri kaçlık kısımda
             var currentExp = 0
             var lasti = 0
             for i in 0..<100{
@@ -104,6 +104,7 @@ extension VLSMResultViewController{
                     break
                 }
             }
+            //andlenmiş binary ip adresi
             let withSubnetIpAdress = getWithSubnetIpAdress(self.ipAdress!) //ip adresini subnet ile andleyip, binary dönüştürür. (11000000.10101000.00000000.00000000)
             self.kullanilanIPBinaryString = withSubnetIpAdress
             let decimalIPAdress = getDecimalIPAdress(withSubnetIpAdress) //andlenmiş binary adresini decimal dönüştür. 192.168.0.0
@@ -115,7 +116,7 @@ extension VLSMResultViewController{
             self.showIpRange(ipExps,decimalIPAdress, networkItem.agAdi)
             self.dataListResult[sayac].agName = networkItem.agAdi
             self.dataListResult[sayac].agHostSayisi = String(networkItem.hostSayisi)
-            self.dataListResult[sayac].ayrilanIPSayisi = String(currentExp-2)
+            self.dataListResult[sayac].ayrilanIPSayisi = String(currentExp-2) //1024-2
             
             let binarySubnet = getSubnetMaskString(Int64(32-lasti)) // /14 yollarım binary list alırım.
             let subnetMaskString = getSubnetMaskForByteList(binarySubnet) //birleşmiş 0 lı stringe dönüştü
@@ -172,6 +173,9 @@ extension VLSMResultViewController{
                 }else if ipAddressList[3] == 0 && ipAddressList[2] == 0 && ipAddressList[1] != 0{
                     self.dataListResult[sayac-1].agBitisIp = "\(ipAddressList[0]).\(ipAddressList[1]-1).\(255).\(254)"
                     self.dataListResult[sayac-1].agYayinAdresi = "\(ipAddressList[0]).\(ipAddressList[1]-1).\(255).\(255)"
+                }else if ipAddressList[3] == 0 && ipAddressList[2] == 0 && ipAddressList[1] == 0 && ipAddressList[0] != 0{
+                    self.dataListResult[sayac-1].agBitisIp = "\(ipAddressList[0]-1).\(255).\(255).\(254)"
+                    self.dataListResult[sayac-1].agYayinAdresi = "\(ipAddressList[0]-1).\(255).\(255).\(255)"
                 }
             }
         }else{
@@ -195,6 +199,22 @@ extension VLSMResultViewController{
                         }
                         ipAddressList[1]+=sayac2
                         ipAddressList[2]+=sayac
+                        if ipAddressList[2] > 255{
+                            var exSayac = 0
+                            while(ipAddressList[2]>255){
+                                ipAddressList[2] = ipAddressList[2]-256
+                                exSayac+=1
+                            }
+                            ipAddressList[1]+=exSayac
+                        }
+                        if ipAddressList[1] > 255{
+                            var exSayac2 = 0
+                            while(ipAddressList[1]>255){
+                                ipAddressList[1] = ipAddressList[1]-256
+                                exSayac2+=1
+                            }
+                            ipAddressList[0]+=exSayac2
+                        }
                         ipAddressList[3]=total
                     }else{
                         ipAddressList[ipAddressList.count-1]+=ipExps[i]
@@ -225,8 +245,10 @@ extension VLSMResultViewController{
                 }else if ipAddressList[3] == 0 && ipAddressList[2] == 0 && ipAddressList[1] != 0{
                     self.dataListResult[sayac-1].agBitisIp = "\(ipAddressList[0]).\(ipAddressList[1]-1).\(255).\(254)"
                     self.dataListResult[sayac-1].agYayinAdresi = "\(ipAddressList[0]).\(ipAddressList[1]-1).\(255).\(255)"
+                }else if ipAddressList[3] == 0 && ipAddressList[2] == 0 && ipAddressList[1] == 0 && ipAddressList[0] != 0{
+                    self.dataListResult[sayac-1].agBitisIp = "\(ipAddressList[0]-1).\(255).\(255).\(254)"
+                    self.dataListResult[sayac-1].agYayinAdresi = "\(ipAddressList[0]-1).\(255).\(255).\(255)"
                 }
-                
             }
         }
     }
