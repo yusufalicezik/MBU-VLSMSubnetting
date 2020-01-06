@@ -683,9 +683,7 @@
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.88396297089999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="backButtonClicked:" destination="qnc-aK-jzV" eventType="touchUpInside" id="NUi-d2-h9r"/>
-                                            <action selector="backButtonClicked:" destination="bAy-NF-ngI" eventType="touchUpInside" id="ehj-9b-ceT"/>
-                                            <action selector="backButtonClicked:" destination="0VM-8a-Ef4" eventType="touchUpInside" id="xVv-SV-TSq"/>
+                                            <action selector="backbuttonClicked:" destination="oaK-HQ-s6l" eventType="touchUpInside" id="tRb-ii-dF7"/>
                                         </connections>
                                     </button>
                                 </subviews>

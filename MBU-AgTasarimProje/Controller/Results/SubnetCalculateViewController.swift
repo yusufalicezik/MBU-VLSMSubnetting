@@ -41,6 +41,10 @@ class SubnetCalculateViewController: UIViewController {
         }
     }
     
+    @IBAction func backbuttonClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+       }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
